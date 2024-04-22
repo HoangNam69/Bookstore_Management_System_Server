@@ -4,6 +4,7 @@ import entities.NhanVien;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class NhanVienDao {
     private EntityManager em;
 
     public NhanVienDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public boolean themNhanvien(NhanVien nv) throws Exception {
@@ -34,7 +35,7 @@ public class NhanVienDao {
         return em.createNativeQuery("SELECT * FROM NhanVien", NhanVien.class).getResultList();
     }
 
-    public List<NhanVien> timDanhSachNhanVienTheoMa(String maNV) throws Exception{
+    public List<NhanVien> timDanhSachNhanVienTheoMa(String maNV) throws Exception {
         try {
             return em.createQuery("SELECT nv FROM NhanVien nv WHERE nv.maNhanVien LIKE :maNV", NhanVien.class)
                     .setParameter("maNV", "%" + maNV + "%")

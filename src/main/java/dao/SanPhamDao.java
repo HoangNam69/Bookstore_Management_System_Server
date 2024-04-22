@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import util.DatabaseConnection;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class SanPhamDao {
     private EntityManager em;
 
     public SanPhamDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
 

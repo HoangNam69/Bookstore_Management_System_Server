@@ -4,6 +4,7 @@ import entities.NhaXuatBan;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public class NhaXuatBanDao {
     private EntityManager em;
 
     public NhaXuatBanDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public List<NhaXuatBan> getListNhaXuatBan() throws Exception {
