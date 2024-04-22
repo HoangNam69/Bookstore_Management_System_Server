@@ -4,6 +4,7 @@ import entities.ChiTietHoaDonDoiTra;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import util.DatabaseConnection;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,7 +13,7 @@ public class ChiTietHoaDonDoiTraDao  {
 	private EntityManager em;
 
 	public ChiTietHoaDonDoiTraDao() throws Exception{
-		em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+		em = DatabaseConnection.getInstance().getEntityManager();
 	}
 	public List<ChiTietHoaDonDoiTra> getCTHoaDonDoiTraTheoMaHoaDonDoiTra(String maHD) throws Exception {
 		TypedQuery<ChiTietHoaDonDoiTra> query = em.createQuery(

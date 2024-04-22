@@ -4,6 +4,7 @@ import entities.MauSac;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.ArrayList;
 
@@ -12,8 +13,7 @@ public class MauSacDao {
     private EntityManager em;
 
     public MauSacDao()throws Exception {
-        em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB")
-                .createEntityManager();
+        em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public ArrayList<MauSac> getListMauSac()throws Exception {

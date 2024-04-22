@@ -3,6 +3,7 @@ package dao;
 import entities.HoaDonDoiTra;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class HoaDonDoiTraDao {
 	private EntityManager em;
 
 	public HoaDonDoiTraDao()throws Exception {
-		this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+		em = DatabaseConnection.getInstance().getEntityManager();
 	}
 
 	public int themHoaDonDoiTra(HoaDonDoiTra hddt)throws Exception {
