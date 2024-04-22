@@ -14,7 +14,7 @@ public class NhanVienDao {
         this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
     }
 
-    public boolean themNhanvien(NhanVien nv) {
+    public boolean themNhanvien(NhanVien nv) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -30,11 +30,11 @@ public class NhanVienDao {
     }
 
 
-    public List<NhanVien> getDSNhanVien() {
+    public List<NhanVien> getDSNhanVien() throws Exception {
         return em.createNativeQuery("SELECT * FROM NhanVien", NhanVien.class).getResultList();
     }
 
-    public List<NhanVien> timDanhSachNhanVienTheoMa(String maNV) {
+    public List<NhanVien> timDanhSachNhanVienTheoMa(String maNV) throws Exception{
         try {
             return em.createQuery("SELECT nv FROM NhanVien nv WHERE nv.maNhanVien LIKE :maNV", NhanVien.class)
                     .setParameter("maNV", "%" + maNV + "%")
@@ -45,7 +45,7 @@ public class NhanVienDao {
         }
     }
 
-    public NhanVien timNhanVienTheoMa(String maNV) {
+    public NhanVien timNhanVienTheoMa(String maNV) throws Exception {
         try {
             return (NhanVien) em.createNativeQuery("SELECT * FROM NhanVien WHERE maNhanVien=?", NhanVien.class)
                     .setParameter(1, maNV)
@@ -56,7 +56,7 @@ public class NhanVienDao {
         }
     }
 
-    public List<NhanVien> timDSNhanVienTheoTen(String tenNV) {
+    public List<NhanVien> timDSNhanVienTheoTen(String tenNV) throws Exception {
         try {
             return em.createQuery("SELECT nv FROM NhanVien nv WHERE nv.hoTenNhanVien LIKE :tenNV", NhanVien.class)
                     .setParameter("tenNV", "%" + tenNV + "%")
@@ -67,7 +67,7 @@ public class NhanVienDao {
         }
     }
 
-    public NhanVien timNhanVienTheoTen(String tenNV) {
+    public NhanVien timNhanVienTheoTen(String tenNV) throws Exception {
         try {
             return (NhanVien) em.createNativeQuery("SELECT * FROM NhanVien WHERE hoTenNhanVien LIKE ?", NhanVien.class)
                     .setParameter(1, tenNV)
@@ -78,7 +78,7 @@ public class NhanVienDao {
         }
     }
 
-    public List<NhanVien> timNhanVienTheoSDT(String sdt) {
+    public List<NhanVien> timNhanVienTheoSDT(String sdt) throws Exception {
         try {
             return em.createQuery("SELECT nv FROM NhanVien nv WHERE nv.sDT LIKE :sdt", NhanVien.class)
                     .setParameter("sdt", "%" + sdt + "%")
@@ -90,14 +90,14 @@ public class NhanVienDao {
     }
 
 
-    public List<NhanVien> getListNhanVienByNameAndSDT(String tenNV, String sdt) {
+    public List<NhanVien> getListNhanVienByNameAndSDT(String tenNV, String sdt) throws Exception {
         return em.createQuery("SELECT nv FROM NhanVien nv WHERE nv.hoTenNhanVien LIKE :tenNV OR nv.sDT LIKE :sdt", NhanVien.class)
                 .setParameter("tenNV", "%" + tenNV + "%")
                 .setParameter("sdt", "%" + sdt + "%")
                 .getResultList();
     }
 
-    public boolean xoaNhanVien(String maNV) {
+    public boolean xoaNhanVien(String maNV) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -112,7 +112,7 @@ public class NhanVienDao {
         }
     }
 
-    public boolean suaNhanVien(NhanVien nv) {
+    public boolean suaNhanVien(NhanVien nv) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -127,7 +127,7 @@ public class NhanVienDao {
         return false;
     }
 
-    public NhanVien getNhanVienByEmail(String email) {
+    public NhanVien getNhanVienByEmail(String email) throws Exception {
         try {
             return (NhanVien) em.createNativeQuery("SELECT * FROM NhanVien WHERE email = ?", NhanVien.class)
                     .setParameter(1, email)

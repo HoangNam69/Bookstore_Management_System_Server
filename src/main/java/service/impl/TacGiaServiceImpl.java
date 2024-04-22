@@ -30,19 +30,19 @@ public class TacGiaServiceImpl extends UnicastRemoteObject implements TacGiaServ
 	}
 
 	@Override
-	public boolean xoaTacGia(String maTacGia) {
+	public boolean xoaTacGia(String maTacGia) throws Exception{
 		// TODO Auto-generated method stub
-		return false;
+		return tacGiaDao.xoaTacGia(maTacGia);
 	}
 
 	@Override
-	public List<TacGia> getTacGia(String maTacGia) {
+	public List<TacGia> getTacGia(String maTacGia)throws Exception {
 		// TODO Auto-generated method stub
 		return tacGiaDao.getTacGia(maTacGia);
 	}
 
 	@Override
-	public TacGia timTacGia(String TacGia) throws SQLException {
+	public TacGia timTacGia(String TacGia) throws Exception {
 		// TODO Auto-generated method stub
 		return tacGiaDao.timTacGia(TacGia);
 	}

@@ -28,7 +28,7 @@ public interface NhanVienService extends Remote {
 
     public List<NhanVien> timNhanVienTheoSDT(String sDT) throws Exception;
 
-    public List<NhanVien> getListNhanVienByNameAndSDT(String tenNV, String sdt);
+    public List<NhanVien> getListNhanVienByNameAndSDT(String tenNV, String sdt) throws Exception;
 
     public NhanVien timNhanVienTheoTen(String tenNV) throws Exception;
 

@@ -16,7 +16,7 @@ public class SachLoiDao {
                 .createEntityManager();
     }
 
-    public boolean themSachLoi(SachLoi sl) {
+    public boolean themSachLoi(SachLoi sl) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -30,7 +30,7 @@ public class SachLoiDao {
         }
     }
 
-    public boolean capNhatSoLuong(SachLoi sl) {
+    public boolean capNhatSoLuong(SachLoi sl) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -44,12 +44,12 @@ public class SachLoiDao {
         }
     }
 
-    public List<SachLoi> getAllSachLoi() {
+    public List<SachLoi> getAllSachLoi() throws Exception {
         return em.createNativeQuery("SELECT * FROM SachLoi", SachLoi.class)
                 .getResultList();
     }
 
-    public boolean xoaSachLoi(String maSach, String loi) {
+    public boolean xoaSachLoi(String maSach, String loi) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();

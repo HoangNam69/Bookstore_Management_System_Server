@@ -60,55 +60,55 @@ public class SanPhamServiceImpl extends UnicastRemoteObject implements SanPhamSe
     }
 
     @Override
-    public String getMaSPMax() throws SQLException {
+    public String getMaSPMax() throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.getMaSPMax();
     }
 
     @Override
-    public int getSoLuongSachLoi() throws SQLException {
+    public int getSoLuongSachLoi() throws Exception {
         // TODO Auto-generated method stub
         return thongKeDao.getSoLuongSachLoi();
     }
 
     @Override
-    public int getSoLuongVPPTon() throws SQLException {
+    public int getSoLuongVPPTon() throws Exception {
         // TODO Auto-generated method stub
         return thongKeDao.getSoLuongVPPTon();
     }
 
     @Override
-    public int getSoLuongSachTon() throws SQLException {
+    public int getSoLuongSachTon() throws Exception {
         // TODO Auto-generated method stub
         return thongKeDao.getSoLuongSachTon();
     }
 
     @Override
-    public List<SanPham> getSanPhamBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<SanPham> getSanPhamBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         // TODO Auto-generated method stub
         return thongKeDao.getSanPhamBanNhieuNhatTheoNgayTuChon(ngayBatDau, ngayKetThuc);
     }
 
     @Override
-    public SanPham timSanPhamTheoMa(String maSP) throws SQLException {
+    public SanPham timSanPhamTheoMa(String maSP) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.timSanPhamTheoMa(maSP);
     }
 
     @Override
-    public int getSoLuongBanCuaSanPhamChayNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws SQLException {
+    public int getSoLuongBanCuaSanPhamChayNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         // TODO Auto-generated method stub
         return thongKeDao.getSoLuongBanCuaSanPhamChayNhat(ngayBatDau, ngayKetThuc);
     }
 
     @Override
-    public Sach getSachTheoMaSP(String maSP) throws SQLException {
+    public Sach getSachTheoMaSP(String maSP) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.getSachTheoMaSP(maSP);
     }
 
     @Override
-    public VanPhongPham getVPPTheoMaSP(String maSP) throws SQLException {
+    public VanPhongPham getVPPTheoMaSP(String maSP) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.getVPPTheoMaSP(maSP);
     }
@@ -126,7 +126,7 @@ public class SanPhamServiceImpl extends UnicastRemoteObject implements SanPhamSe
     }
 
     @Override
-    public boolean xoaSanPham(String maSP) {
+    public boolean xoaSanPham(String maSP) throws Exception {
         // TODO Auto-generated method stub
         return false;
     }
@@ -138,31 +138,31 @@ public class SanPhamServiceImpl extends UnicastRemoteObject implements SanPhamSe
     }
 
     @Override
-    public Sach getSachTheoTen(String ten) {
+    public Sach getSachTheoTen(String ten) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.getSachTheoTen(ten);
     }
 
     @Override
-    public int capNhatSoLuongSanPham(SanPham sanPham) {
+    public int capNhatSoLuongSanPham(SanPham sanPham) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.capNhatSoLuongSanPham(sanPham);
     }
 
     @Override
-    public List<VanPhongPham> getAllVPP() {
+    public List<VanPhongPham> getAllVPP() throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.getAllVPP();
     }
 
     @Override
-    public VanPhongPham getVPPTheoTen(String ten) {
+    public VanPhongPham getVPPTheoTen(String ten) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.getVPPTheoTen(ten);
     }
 
     @Override
-    public SanPham getSanPhamTheoMa(String masp) throws SQLException {
+    public SanPham getSanPhamTheoMa(String masp) throws Exception {
         // TODO Auto-generated method stub
         SanPham sp;
         if (sanPhamDao.getSanPhamTheoMa(masp).getLoaiSanPham().equals("Sách")) {
@@ -177,7 +177,7 @@ public class SanPhamServiceImpl extends UnicastRemoteObject implements SanPhamSe
     }
 
     @Override
-    public SanPham timSanPhamTheoMa1(String maSP) {
+    public SanPham timSanPhamTheoMa1(String maSP) throws Exception {
         // TODO Auto-generated method stub
         return sanPhamDao.timSanPhamTheoMa1(maSP);
     }
