@@ -3,6 +3,7 @@ package dao;
 import entities.KhachHang;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class KhachHangDao {
 	private EntityManager em;
 
 	public KhachHangDao()throws Exception {
-		em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+		em = DatabaseConnection.getInstance().getEntityManager();
 	}
 
 	public int  themKhachHang(KhachHang kh) throws Exception{

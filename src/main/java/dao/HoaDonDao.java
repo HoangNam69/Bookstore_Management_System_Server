@@ -2,6 +2,7 @@ package dao;
 
 import entities.HoaDon;
 import jakarta.persistence.*;
+import util.DatabaseConnection;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class HoaDonDao {
 	private EntityManager em;
 
 	public HoaDonDao()throws Exception {
-		em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+		em = DatabaseConnection.getInstance().getEntityManager();
 	}
 
 	public int setNullChoMaNhanVienTrongHoaDon(String maNV)throws Exception {

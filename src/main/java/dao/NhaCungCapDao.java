@@ -4,6 +4,7 @@ import entities.NhaCungCap;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.ArrayList;
 
@@ -12,8 +13,7 @@ public class NhaCungCapDao {
     private EntityManager em;
 
     public NhaCungCapDao() throws Exception{
-        em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB")
-                .createEntityManager();
+        em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public ArrayList<NhaCungCap> getListNhaCungCapTheoLoaiSanPham(String loaiSanPham) throws Exception{
