@@ -13,28 +13,28 @@ import java.util.List;
 public class ChiTietHoaDonDao {
     private EntityManager em;
 
-    public ChiTietHoaDonDao() {
+    public ChiTietHoaDonDao()throws Exception {
         em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
     }
 
-    public List<ChiTietHoaDon> getCTHoaDonTheoMaHoaDon(String maHD) {
+    public List<ChiTietHoaDon> getCTHoaDonTheoMaHoaDon(String maHD)throws Exception {
         TypedQuery<ChiTietHoaDon> query = em.createQuery("SELECT c FROM ChiTietHoaDon c WHERE c.hoaDon.maHoaDon = :maHD", ChiTietHoaDon.class);
         query.setParameter("maHD", maHD);
         return query.getResultList();
     }
 
-    public ArrayList<ChiTietHoaDon> getCTHDTheoHoaDon(HoaDon hoaDon) {
+    public ArrayList<ChiTietHoaDon> getCTHDTheoHoaDon(HoaDon hoaDon)throws Exception {
         TypedQuery<ChiTietHoaDon> query = em.createQuery("SELECT c FROM ChiTietHoaDon c WHERE c.hoaDon.maHoaDon = :maHD", ChiTietHoaDon.class);
         query.setParameter("maHD", hoaDon.getMaHoaDon());
         return (ArrayList<ChiTietHoaDon>) query.getResultList();
     }
 
-    public List<ChiTietHoaDon> getAllCTHD() {
+    public List<ChiTietHoaDon> getAllCTHD()throws Exception {
         TypedQuery<ChiTietHoaDon> query = em.createQuery("SELECT c FROM ChiTietHoaDon c", ChiTietHoaDon.class);
         return query.getResultList();
     }
 
-    public boolean addChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
+    public boolean addChiTietHoaDon(ChiTietHoaDon chiTietHoaDon)throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -48,7 +48,7 @@ public class ChiTietHoaDonDao {
         }
     }
 
-    public double getTien(String maHD) {
+    public double getTien(String maHD)throws Exception {
         TypedQuery<Long> query = em.createQuery("SELECT SUM(c.soLuong * c.donGia) FROM ChiTietHoaDon c WHERE c.hoaDon.maHoaDon = :maHD", Long.class);
         query.setParameter("maHD", maHD);
         Long tong = query.getSingleResult();

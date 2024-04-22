@@ -11,17 +11,17 @@ public class MauSacDao {
 
     private EntityManager em;
 
-    public MauSacDao() {
+    public MauSacDao()throws Exception {
         em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB")
                 .createEntityManager();
     }
 
-    public ArrayList<MauSac> getListMauSac() {
+    public ArrayList<MauSac> getListMauSac()throws Exception {
         return (ArrayList<MauSac>) em.createNativeQuery("SELECT maMauSac, tenMau FROM MauSac", MauSac.class)
                 .getResultList();
     }
 
-    public boolean themMauSac(MauSac mauSac) {
+    public boolean themMauSac(MauSac mauSac)throws Exception {
 
         EntityTransaction tx = em.getTransaction();
         try {
@@ -39,7 +39,7 @@ public class MauSacDao {
         }
     }
 
-    public MauSac timMauSac(String mau) {
+    public MauSac timMauSac(String mau)throws Exception {
         try {
             return (MauSac) em.createNativeQuery("SELECT * FROM MauSac WHERE tenMau = ?", MauSac.class)
                     .setParameter(1, mau)
@@ -50,13 +50,13 @@ public class MauSacDao {
         }
     }
 
-    public boolean kiemTraTonTaiMauSac(MauSac mauSac) {
+    public boolean kiemTraTonTaiMauSac(MauSac mauSac)throws Exception {
         return em.createNativeQuery("SELECT * FROM MauSac WHERE tenMau = ?", MauSac.class)
                 .setParameter(1, mauSac.getTenMau())
                 .getResultList().size() > 0;
     }
 
-    public boolean capNhatMauSac(MauSac mauSac) {
+    public boolean capNhatMauSac(MauSac mauSac)throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -73,7 +73,7 @@ public class MauSacDao {
         }
     }
 
-    public boolean xoaMauSac(String maMauSac) {
+    public boolean xoaMauSac(String maMauSac)throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
