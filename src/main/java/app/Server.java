@@ -22,7 +22,7 @@ import java.util.Hashtable;
  * @version: 1.0
  */
 public class Server {
-    private static final String URL = "rmi://192.168.1.11:7878/";
+    private static final String URL = "rmi://172.168.0.104:7878/";
     public static void main(String[] args) throws Exception, NamingException {
 
         Hashtable<String, String> env = new Hashtable<String, String>();
