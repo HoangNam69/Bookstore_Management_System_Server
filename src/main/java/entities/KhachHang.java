@@ -66,7 +66,7 @@ public class KhachHang implements Serializable {
         this.diaChi = diaChi;
     }
 
-    public static String auto_ID() {
+    public static String auto_ID() throws Exception {
         KhachHangDao khachhang_dao = new KhachHangDao();
         String idPrefix = "KH";
         LocalDate myObj = LocalDate.now();

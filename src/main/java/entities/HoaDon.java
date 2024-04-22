@@ -97,7 +97,7 @@ public class HoaDon implements Serializable {
         this.tinhTrang = tinhTrang;
     }
 
-    public static String auto_ID() {
+    public static String auto_ID() throws Exception {
         HoaDonDao hoadon_dao = new HoaDonDao();
         String idPrefix = "HD";
         LocalDate myObj = LocalDate.now();
