@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class ThongKeDao {
     private EntityManager em;
 
     public ThongKeDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
 

@@ -4,6 +4,7 @@ import entities.XuatXu;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +21,7 @@ public class XuatXuDao {
     private EntityManager em;
 
     public XuatXuDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public List<XuatXu> getListXuatXu() throws Exception {

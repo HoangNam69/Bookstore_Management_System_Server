@@ -5,6 +5,7 @@ import entities.SachLoi;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import util.DatabaseConnection;
 
 import java.util.List;
 
@@ -12,8 +13,7 @@ public class SachLoiDao {
     private EntityManager em;
 
     public SachLoiDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB")
-                .createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public boolean themSachLoi(SachLoi sl) throws Exception {

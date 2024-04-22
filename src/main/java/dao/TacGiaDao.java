@@ -4,6 +4,7 @@ import entities.TacGia;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,15 +12,10 @@ import java.sql.ResultSet;
 import java.util.List;
 
 public class TacGiaDao {
-    private Connection con;
-    private PreparedStatement ps = null;
-    private ResultSet rs;
-    private String query;
-    private int rsCheck;
-    private EntityManager em;
+        private EntityManager em;
 
     public TacGiaDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public List<TacGia> getListTacGia() throws Exception {

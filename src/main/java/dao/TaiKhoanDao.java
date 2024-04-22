@@ -4,6 +4,7 @@ import entities.TaiKhoan;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class TaiKhoanDao {
     private EntityManager em;
 
     public TaiKhoanDao() {
-        this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+        this.em = DatabaseConnection.getInstance().getEntityManager();
     }
 
     public List<TaiKhoan> getList() throws Exception {
