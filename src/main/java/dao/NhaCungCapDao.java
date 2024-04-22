@@ -11,12 +11,12 @@ public class NhaCungCapDao {
 
     private EntityManager em;
 
-    public NhaCungCapDao() {
+    public NhaCungCapDao() throws Exception{
         em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB")
                 .createEntityManager();
     }
 
-    public ArrayList<NhaCungCap> getListNhaCungCapTheoLoaiSanPham(String loaiSanPham) {
+    public ArrayList<NhaCungCap> getListNhaCungCapTheoLoaiSanPham(String loaiSanPham) throws Exception{
         try {
             return (ArrayList<NhaCungCap>) em.createNativeQuery("SELECT ncc.* FROM NhaCungCap as ncc " +
                             "INNER JOIN SanPham as sp ON ncc.maNCC = sp.maNCC " +
@@ -28,7 +28,7 @@ public class NhaCungCapDao {
         }
     }
 
-    public boolean themNhaCungCap(NhaCungCap ncc) {
+    public boolean themNhaCungCap(NhaCungCap ncc)throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -45,11 +45,11 @@ public class NhaCungCapDao {
         }
     }
 
-    public ArrayList<NhaCungCap> getAllListNhaCungCap() {
+    public ArrayList<NhaCungCap> getAllListNhaCungCap() throws Exception{
         return (ArrayList<NhaCungCap>) em.createNativeQuery("SELECT * FROM NhaCungCap", NhaCungCap.class).getResultList();
     }
 
-    public NhaCungCap timNhaCungCapTheoTen(String tenNCC) {
+    public NhaCungCap timNhaCungCapTheoTen(String tenNCC) throws Exception{
         try {
             return (NhaCungCap) em.createNativeQuery("SELECT * FROM NhaCungCap WHERE tenNCC = ?", NhaCungCap.class)
                     .setParameter(1, tenNCC)
@@ -59,7 +59,7 @@ public class NhaCungCapDao {
         }
     }
 
-    public boolean kiemTraTonTaiNCC(String ten) {
+    public boolean kiemTraTonTaiNCC(String ten) throws Exception{
         return em.createNativeQuery("SELECT * FROM NhaCungCap WHERE tenNCC = ?", NhaCungCap.class)
                 .setParameter(1, ten)
                 .getResultList().size() > 0;

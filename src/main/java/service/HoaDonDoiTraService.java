@@ -7,29 +7,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface HoaDonDoiTraService extends Remote{
-	public int themHoaDonDoiTra(HoaDonDoiTra hddt) throws SQLException;
-
-	public List<HoaDonDoiTra> getHoaDonDoiTraTheoMa(String maHDDT);
-
-	public List<HoaDonDoiTra> getDSHoaDonDoiTra() throws SQLException;
-
-	public int editTienKhachTra(HoaDonDoiTra hddt);
-
-	public List<HoaDonDoiTra> getMaHoaDonDoiTraByMaHDCu(String maHDCu);
-
-	public int editTienPhaiTru(HoaDonDoiTra hddt);
-	
-	public List<HoaDonDoiTra> getToanBoDSHoaDonDoiTra() throws SQLException ;
-
-	// Tim hoa don doi tra theo ma
-	public HoaDonDoiTra timHoaDonDoiTraTheoMa(String maHoaDon);
-	
-
-// Tim hóa đơn đổi trả theo tên nhân viên
-	public List<HoaDonDoiTra> getHoaDonDoiTraTheoTen(String tenNV) throws SQLException ;
-	
-
-	public List<HoaDonDoiTra> getHoaDonDoiTraTheoSDT(String sdt);
-
-	public List<HoaDonDoiTra> getHoaDonDoiTraTheoTenKH(String tenKH);
+	public int themHoaDonDoiTra(HoaDonDoiTra hddt) throws Exception;
+	public List<HoaDonDoiTra> getHoaDonDoiTraTheoMa(String maHDDT)throws Exception;
+	public List<HoaDonDoiTra> getDSHoaDonDoiTra()throws Exception;
+	public int editTienKhachTra(HoaDonDoiTra hddt)throws Exception;
+	public List<HoaDonDoiTra> getMaHoaDonDoiTraByMaHDCu(String maHDCu)throws Exception;
+	public int editTienPhaiTru(HoaDonDoiTra hddt)throws Exception;
+	public List<HoaDonDoiTra> getToanBoDSHoaDonDoiTra()throws Exception;
+	public HoaDonDoiTra timHoaDonDoiTraTheoMa(String maHoaDon)throws Exception;
+	public List<HoaDonDoiTra> getHoaDonDoiTraTheoTen(String tenNV)throws Exception;
+	public List<HoaDonDoiTra> getHoaDonDoiTraTheoSDT(String sdt)throws Exception;
+	public List<HoaDonDoiTra> getHoaDonDoiTraTheoTenKH(String tenKH)throws Exception;
 }

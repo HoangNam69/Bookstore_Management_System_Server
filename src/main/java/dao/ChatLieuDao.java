@@ -12,16 +12,16 @@ import java.util.List;
 public class ChatLieuDao {
 	private EntityManager em;
 
-	public ChatLieuDao() {
+	public ChatLieuDao() throws Exception {
 		em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
 	}
 
-	public ArrayList<ChatLieu> getListChatLieu() {
+	public ArrayList<ChatLieu> getListChatLieu()throws Exception {
 		TypedQuery<ChatLieu> query = em.createQuery("SELECT c FROM ChatLieu c", ChatLieu.class);
 		return new ArrayList<>(query.getResultList());
 	}
 
-	public boolean themChatLieu(ChatLieu l) {
+	public boolean themChatLieu(ChatLieu l)throws Exception {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
@@ -35,19 +35,19 @@ public class ChatLieuDao {
 		}
 	}
 
-	public ChatLieu timChatLieu(String tenChatLieu) {
+	public ChatLieu timChatLieu(String tenChatLieu)throws Exception {
 		TypedQuery<ChatLieu> query = em.createQuery("SELECT c FROM ChatLieu c WHERE c.tenChatLieu = :tenChatLieu", ChatLieu.class);
 		query.setParameter("tenChatLieu", tenChatLieu);
 		return query.getSingleResult();
 	}
 
-	public List<ChatLieu> getChatLieu(String maChatLieu) {
+	public List<ChatLieu> getChatLieu(String maChatLieu)throws Exception {
 		TypedQuery<ChatLieu> query = em.createQuery("SELECT c FROM ChatLieu c WHERE c.maChatLieu = :maChatLieu", ChatLieu.class);
 		query.setParameter("maChatLieu", maChatLieu);
 		return query.getResultList();
 	}
 
-	public boolean kiemTraTonTaiChatLieu(String ten) {
+	public boolean kiemTraTonTaiChatLieu(String ten)throws Exception{
 		TypedQuery<ChatLieu> query = em.createQuery("SELECT c FROM ChatLieu c WHERE c.tenChatLieu = :tenChatLieu", ChatLieu.class);
 		query.setParameter("tenChatLieu", ten);
 		return !query.getResultList().isEmpty();

@@ -13,33 +13,33 @@ import java.util.List;
 public class ChiTietHoaDonServiceImpl extends UnicastRemoteObject implements ChiTietHoaDonService {
 	private ChiTietHoaDonDao chiTietHoaDonDao;
 
-	public ChiTietHoaDonServiceImpl() throws RemoteException {
+	public ChiTietHoaDonServiceImpl() throws Exception {
 		this.chiTietHoaDonDao = new ChiTietHoaDonDao();
 	}
 
 
 	@Override
-	public List<ChiTietHoaDon> getCTHoaDonTheoMaHoaDon(String maHD) {
+	public List<ChiTietHoaDon> getCTHoaDonTheoMaHoaDon(String maHD)throws Exception {
 		return chiTietHoaDonDao.getCTHoaDonTheoMaHoaDon(maHD);
 	}
 
 	@Override
-	public ArrayList<ChiTietHoaDon> getCTHDTheoHoaDon(HoaDon hoaDon) {
+	public ArrayList<ChiTietHoaDon> getCTHDTheoHoaDon(HoaDon hoaDon)throws Exception {
 		return chiTietHoaDonDao.getCTHDTheoHoaDon(hoaDon);
 	}
 
 	@Override
-	public List<ChiTietHoaDon> getAllCTHD() {
+	public List<ChiTietHoaDon> getAllCTHD()throws Exception {
 		return chiTietHoaDonDao.getAllCTHD();
 	}
 
 	@Override
-	public boolean addChiTietHoaDon(ChiTietHoaDon chiTietHoaDon) {
+	public boolean addChiTietHoaDon(ChiTietHoaDon chiTietHoaDon)throws Exception {
 		return  chiTietHoaDonDao.addChiTietHoaDon(chiTietHoaDon);
 	}
 
 	@Override
-	public double getTien(String maHD) {
+	public double getTien(String maHD)throws Exception {
 		return chiTietHoaDonDao.getTien(maHD);
 	}
 }

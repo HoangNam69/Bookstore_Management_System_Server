@@ -12,32 +12,32 @@ import java.util.List;
 public class ChatLieuServiceImpl extends UnicastRemoteObject  implements ChatLieuService {
 	private ChatLieuDao chatLieuDao;
 
-	public ChatLieuServiceImpl() throws RemoteException{
+	public ChatLieuServiceImpl() throws Exception{
 		this.chatLieuDao = new ChatLieuDao();
 	}
 
 	@Override
-	public ArrayList<ChatLieu> getListChatLieu() throws RemoteException {
+	public ArrayList<ChatLieu> getListChatLieu() throws Exception {
 		return chatLieuDao.getListChatLieu();
 	}
 
 	@Override
-	public boolean themChatLieu(ChatLieu l) throws RemoteException {
+	public boolean themChatLieu(ChatLieu l) throws Exception {
 		return chatLieuDao.themChatLieu(l);
 	}
 
 	@Override
-	public boolean xoaChatLieu(String maChatLieu) {
+	public boolean xoaChatLieu(String maChatLieu)throws Exception {
 		return false;
 	}
 
 	@Override
-	public List<ChatLieu> getChatLieu(String maChatLieu) {
+	public List<ChatLieu> getChatLieu(String maChatLieu)throws Exception {
 		return chatLieuDao.getChatLieu(maChatLieu);
 	}
 
 	@Override
-	public ChatLieu timChatLieu(String tenChatLieu) throws RemoteException {
+	public ChatLieu timChatLieu(String tenChatLieu) throws Exception {
 		return chatLieuDao.timChatLieu(tenChatLieu);
 	}
 }

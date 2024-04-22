@@ -8,11 +8,11 @@ import java.util.List;
 public class HoaDonDao {
 	private EntityManager em;
 
-	public HoaDonDao() {
+	public HoaDonDao()throws Exception {
 		em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
 	}
 
-	public int setNullChoMaNhanVienTrongHoaDon(String maNV) {
+	public int setNullChoMaNhanVienTrongHoaDon(String maNV)throws Exception {
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		Query query = em.createQuery("UPDATE HoaDon h SET h.nhanVien = NULL WHERE h.nhanVien.maNhanVien = :maNV");
@@ -22,12 +22,12 @@ public class HoaDonDao {
 		return result;
 	}
 
-	public List<HoaDon> getDSHoaDon() {
+	public List<HoaDon> getDSHoaDon()throws Exception {
 		TypedQuery<HoaDon> query = em.createQuery("SELECT h FROM HoaDon h ORDER BY h.ngayLapHoaDon DESC", HoaDon.class);
 		return query.getResultList();
 	}
 
-	public int doiThongTinHoaDonSauKhiXoa(String tenNV) {
+	public int doiThongTinHoaDonSauKhiXoa(String tenNV)throws Exception {
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		Query query = em.createQuery("UPDATE HoaDon h SET h.nhanVien = NULL WHERE h.nhanVien IS NULL");
@@ -37,7 +37,7 @@ public class HoaDonDao {
 	}
 
 
-	public int themHoaDon(HoaDon hd) {
+	public int themHoaDon(HoaDon hd)throws Exception {
 		try {
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
@@ -49,34 +49,34 @@ public class HoaDonDao {
 		}
 	}
 
-	public List<HoaDon> getHoaDonTheoMa(String maHD) {
+	public List<HoaDon> getHoaDonTheoMa(String maHD)throws Exception {
 		TypedQuery<HoaDon> query = em.createQuery("SELECT h FROM HoaDon h WHERE h.maHoaDon = :maHD", HoaDon.class);
 		query.setParameter("maHD", maHD);
 		return query.getResultList();
 	}
 
-	public List<HoaDon> getHoaDonThuong() {
+	public List<HoaDon> getHoaDonThuong()throws Exception{
 		TypedQuery<HoaDon> query = em.createQuery("SELECT h FROM HoaDon h", HoaDon.class);
 		return query.getResultList();
 	}
 
-	public HoaDon timHoaDonTheoMa(String maHoaDon) {
+	public HoaDon timHoaDonTheoMa(String maHoaDon)throws Exception {
 		return em.find(HoaDon.class, maHoaDon);
 	}
 
-	public List<HoaDon> getHoaDonTheoTen(String tenNV) {
+	public List<HoaDon> getHoaDonTheoTen(String tenNV)throws Exception {
 		TypedQuery<HoaDon> query = em.createQuery("SELECT h FROM HoaDon h JOIN h.nhanVien n WHERE n.hoTenNhanVien LIKE :tenNV", HoaDon.class);
 		query.setParameter("tenNV", "%" + tenNV + "%");
 		return query.getResultList();
 	}
 
-	public List<HoaDon> timHoaDonTheoSDT(String sdt) {
+	public List<HoaDon> timHoaDonTheoSDT(String sdt)throws Exception {
 		TypedQuery<HoaDon> query = em.createQuery("SELECT h FROM HoaDon h WHERE h.khachHang.sDT = :sdt", HoaDon.class);
 		query.setParameter("sdt", sdt);
 		return query.getResultList();
 	}
 
-	public List<HoaDon> timHoaDonTheoTenKH(String ten) {
+	public List<HoaDon> timHoaDonTheoTenKH(String ten)throws Exception {
 		TypedQuery<HoaDon> query = em.createQuery("SELECT h FROM HoaDon h JOIN h.khachHang k WHERE k.hoTenKhachHang LIKE :ten", HoaDon.class);
 		query.setParameter("ten", "%" + ten + "%");
 		return query.getResultList();

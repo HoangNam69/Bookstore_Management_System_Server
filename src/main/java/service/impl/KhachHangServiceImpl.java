@@ -18,17 +18,17 @@ public class KhachHangServiceImpl extends UnicastRemoteObject implements KhachHa
 	ThongKeDao thongKeDao = new ThongKeDao();
 	KhachHangDao khachhang_dao = new KhachHangDao();
 
-	public KhachHangServiceImpl() throws RemoteException {
+	public KhachHangServiceImpl() throws Exception {
 		khachhang_dao = new KhachHangDao();
 	}
 
 	@Override
-	public List<KhachHang> getDSKhachHang() throws SQLException {
+	public List<KhachHang> getDSKhachHang() throws Exception {
 		// TODO Auto-generated method stub
 		return khachhang_dao.getDSKhachHang();
 	}
 
-	public int themKhachHang(KhachHang kh) throws SQLException {
+	public int themKhachHang(KhachHang kh) throws Exception {
 		if (!(kh.getHoTenKhachHang()
 				.matches("[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊ"
 						+ "ỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]*"))) {
@@ -43,14 +43,14 @@ public class KhachHangServiceImpl extends UnicastRemoteObject implements KhachHa
 	}
 
 	@Override
-	public KhachHang timKhachHangTheoMa(String maKH) throws SQLException {
+	public KhachHang timKhachHangTheoMa(String maKH) throws Exception {
 		// TODO Auto-generated method stub
 
 		return khachhang_dao.timKhachHangTheoMa(maKH);
 	}
 
 	@Override
-	public int capNhatKhachHang(KhachHang kh) throws SQLException {
+	public int capNhatKhachHang(KhachHang kh) throws Exception {
 		// TODO Auto-generated method stub
 		if (!(kh.getHoTenKhachHang()
 				.matches("[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊ"
@@ -67,26 +67,26 @@ public class KhachHangServiceImpl extends UnicastRemoteObject implements KhachHa
 	}
 
 	@Override
-	public List<KhachHang> getKhachHangMuaNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+	public List<KhachHang> getKhachHangMuaNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc)throws Exception {
 		// TODO Auto-generated method stub
 		return thongKeDao.getKhachHangMuaNhieuNhatTheoNgayTuChon(ngayBatDau, ngayKetThuc);
 	}
 
 	@Override
-	public double getTongTienCuaKhachHangTop1(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws SQLException {
+	public double getTongTienCuaKhachHangTop1(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
 		// TODO Auto-generated method stub
 		return thongKeDao.getTongTienCuaKhachHangTop1(ngayBatDau, ngayKetThuc);
 	}
 
 	@Override
-	public List<KhachHang> getTop10KHThanThiet(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+	public List<KhachHang> getTop10KHThanThiet(LocalDate ngayBatDau, LocalDate ngayKetThuc)throws Exception {
 		// TODO Auto-generated method stub
 		return thongKeDao.getTop10KHThanThiet(ngayBatDau, ngayKetThuc);
 	}
 
 	@Override
 	public int getSoLuongHoaDonCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH)
-			throws SQLException {
+			throws Exception {
 		// TODO Auto-generated method stub
 		return thongKeDao.getSoLuongHoaDonCuaKhachHangTheoMa(ngayBatDau, ngayKetThuc, maKH);
 	}
