@@ -17,7 +17,7 @@ public class MauSac implements Serializable {
     private String tenMau;
 
     //	Moi quan he giua mau sac voi san pham
-    @OneToMany(mappedBy = "mauSac", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mauSac", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<VanPhongPham> vanPhongPhams;
 
     public MauSac(String maMau) {

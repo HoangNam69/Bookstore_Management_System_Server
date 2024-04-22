@@ -17,7 +17,7 @@ public class TheLoaiVanPhongPham implements Serializable {
 	private String tenLoai;
 
 	//	Moi quan he giua loai van phong pham voi van phong pham
-	@OneToMany(mappedBy = "loaiVanPhongPham", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "loaiVanPhongPham", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<VanPhongPham> vanPhongPhams;
 
 

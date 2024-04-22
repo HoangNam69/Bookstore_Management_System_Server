@@ -21,20 +21,20 @@ public class HoaDon implements Serializable {
     private double tienKhachDua;
     private boolean tinhTrang;
 //    moi quan he giua hoa don - nhan vien
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maNhanVien")
     private NhanVien nhanVien;
 //    moi quan he giua hoa don - khach hang
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maKhachHang")
     private KhachHang khachHang;
 
 //    hoa don voi chi tiet hoa don
-    @OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hoaDon", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ChiTietHoaDon> chiTietHoaDons;
 
 //    hoa don voi hoa don doi tra
-    @OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hoaDon", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<HoaDonDoiTra> hoaDonDoiTras;
 
     public HoaDon(String maHoaDon) {

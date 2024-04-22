@@ -12,20 +12,20 @@ public class VanPhongPham extends SanPham implements Serializable {
     private String tenVanPhongPham;
 
     //    Moi quan he giua van phong pham voi loai van phong pham
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maLoaiVanPhongPham")
     private TheLoaiVanPhongPham loaiVanPhongPham;
     //    Moi quan he giua san pham voi mau sac
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maMauSac")
     private MauSac mauSac;
     //    Moi quan he giua san pham voi chat lieu
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maChatLieu")
     private ChatLieu chatLieu;
 
     //    Moi quan he giua san pham voi xuat xu
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maXuatXu")
     private XuatXu xuatXu;
 

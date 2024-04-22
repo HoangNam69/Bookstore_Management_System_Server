@@ -17,7 +17,7 @@ public class TacGia implements Serializable {
     private String tenTacGia;
 
 //    Moi quan he giua tac gia voi sanpham
-    @OneToMany(mappedBy = "tacGia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tacGia", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Sach> sachs;
 
     public TacGia(String maTacGia) {

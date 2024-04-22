@@ -20,19 +20,19 @@ public class HoaDonDoiTra implements Serializable {
 	private double tienKhachDua;
 	private double tienPhaiTru;
 //	moi quan he giua hoa don doi tra - nhan vien
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maNhanVien")
 	private NhanVien nhanVien;
 //	moi quan he giua hoa don doi tra - khach hang
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maKhachHang")
 	private KhachHang khachHang;
 //	moi quan he giua hoa don doi tra - chi tiet hoa don doi tra
-	@OneToMany(mappedBy = "hoaDonDoiTra", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hoaDonDoiTra", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<ChiTietHoaDonDoiTra> chiTietHoaDonDoiTras;
 
 //	moi quan he giua hoa don doi tra - hoa don
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maHoaDon")
 	private HoaDon hoaDon;
 

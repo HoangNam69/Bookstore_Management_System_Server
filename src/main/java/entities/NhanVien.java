@@ -35,7 +35,7 @@ public class NhanVien implements Serializable {
     private Timestamp hanOTP;
 
 
-    @OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nhanVien", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<HoaDon> hoaDons;
 
 

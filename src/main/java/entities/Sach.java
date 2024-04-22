@@ -13,7 +13,7 @@ import java.util.Set;
 public class Sach extends SanPham implements Serializable {
     private String tenSach;
     //    Moi quan he giua san pham voi tac gia
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maTacGia")
     private TacGia tacGia;
 
@@ -21,16 +21,16 @@ public class Sach extends SanPham implements Serializable {
     private int namXuatBan;
     private int soTrang;
     //    Moi quan he giua san pham voi the loai sach
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maTheLoai")
     private TheLoaiSach theLoaiSach;
 
     //    Moi quan he giua san pham voi sach loi
-    @OneToMany(mappedBy = "sach", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sach", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<SachLoi> sachLois;
 
     //    Moi quan he giua san pham voi nha xuat ban
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maNXB")
     private NhaXuatBan nhaXuatBan;
 

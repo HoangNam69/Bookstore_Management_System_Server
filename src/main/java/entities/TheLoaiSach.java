@@ -17,7 +17,7 @@ public class TheLoaiSach implements Serializable {
     private String tenLoai;
 
     //	Moi quan he giua the loai sach voi san pham
-    @OneToMany(mappedBy = "theLoaiSach", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theLoaiSach", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Sach> sachs;
 
 
