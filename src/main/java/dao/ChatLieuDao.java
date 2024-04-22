@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
+import util.DatabaseConnection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class ChatLieuDao {
 	private EntityManager em;
 
 	public ChatLieuDao() throws Exception {
-		em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
+		em = DatabaseConnection.getInstance().getEntityManager();
 	}
 
 	public ArrayList<ChatLieu> getListChatLieu()throws Exception {
