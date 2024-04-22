@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface SachLoiService extends Remote{
-	public boolean themSachLoi(SachLoi sl) throws SQLException;
+	public boolean themSachLoi(SachLoi sl) throws Exception;
 
-	public boolean capNhatSoLuong(SachLoi sl);
+	public boolean capNhatSoLuong(SachLoi sl) throws Exception;
 
-	public List<SachLoi> getAllSachLoi() throws SQLException;
-	public boolean xoaSachLoi(String maSach, String loi);
+	public List<SachLoi> getAllSachLoi() throws Exception;
+	public boolean xoaSachLoi(String maSach, String loi) throws Exception;
 }

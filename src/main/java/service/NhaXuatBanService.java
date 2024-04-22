@@ -11,5 +11,5 @@ public interface NhaXuatBanService extends Remote{
 
 	public boolean themNhaXuatBan(NhaXuatBan t) throws Exception;
 
-	public NhaXuatBan timNhaXuatBan(String NXB) throws SQLException;
+	public NhaXuatBan timNhaXuatBan(String NXB) throws Exception;
 }

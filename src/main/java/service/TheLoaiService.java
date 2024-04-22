@@ -8,18 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface TheLoaiService extends Remote{
-	public ArrayList<TheLoaiSach> getListTheLoaiSach() throws Exception;
+public interface TheLoaiService extends Remote {
+    public ArrayList<TheLoaiSach> getListTheLoaiSach() throws Exception;
 
-	public ArrayList<TheLoaiVanPhongPham> getListTheLoaiVanPhongPham() throws Exception;
+    public ArrayList<TheLoaiVanPhongPham> getListTheLoaiVanPhongPham() throws Exception;
 
-	public boolean themTheLoaiSach(TheLoaiSach t) throws Exception;
+    public boolean themTheLoaiSach(TheLoaiSach t) throws Exception;
 
-	public boolean themTheLoaiVanPhongPham(TheLoaiVanPhongPham t) throws Exception;
+    public boolean themTheLoaiVanPhongPham(TheLoaiVanPhongPham t) throws Exception;
 
-	public TheLoaiSach timTheLoaiSach(String TheLoai) throws SQLException;
+    public TheLoaiSach timTheLoaiSach(String TheLoai) throws Exception;
 
-	public TheLoaiVanPhongPham timTheLoaiVanPhongPham(String TheLoai) throws SQLException;
+    public TheLoaiVanPhongPham timTheLoaiVanPhongPham(String TheLoai) throws Exception;
 
-	public List<TheLoaiSach> getSachTheoTheLoai(String maTL);
+    public List<TheLoaiSach> getSachTheoTheLoai(String maTL) throws Exception;
 }
