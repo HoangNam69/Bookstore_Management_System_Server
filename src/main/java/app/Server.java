@@ -22,14 +22,14 @@ import java.util.Hashtable;
  * @version: 1.0
  */
 public class Server {
-    private static final String URL = "rmi://172.20.35.98:8080/";
+    private static final String URL = "rmi://172.20.34.194:7878/";
     public static void main(String[] args) throws Exception, NamingException {
 
         Hashtable<String, String> env = new Hashtable<String, String>();
         env.put("java.security.policy", "rmi/policy.policy");
-        System.out.println("Server started on port 8080.");
+        System.out.println("Server started on port 7878.");
         Context ctx = new InitialContext(env);
-        LocateRegistry.createRegistry(8080);
+        LocateRegistry.createRegistry(7878);
         ChatLieuService chatLieuService = new ChatLieuServiceImpl();
         ChiTietHoaDonDoiTraService chiTietHoaDonDoiTraService = new ChiTietHoaDonDoiTraServiceImpl();
         ChiTietHoaDonService chiTietHoaDonService = new ChiTietHoaDonServiceImpl();
