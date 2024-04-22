@@ -14,11 +14,11 @@ public class NhaXuatBanDao {
         this.em = Persistence.createEntityManagerFactory("JPA_ORM_MARIADB").createEntityManager();
     }
 
-    public List<NhaXuatBan> getListNhaXuatBan() {
+    public List<NhaXuatBan> getListNhaXuatBan() throws Exception {
         return em.createNativeQuery("SELECT * FROM NhaXuatBan", NhaXuatBan.class).getResultList();
     }
 
-    public boolean themNhaXuatBan(NhaXuatBan nxb) {
+    public boolean themNhaXuatBan(NhaXuatBan nxb) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -32,7 +32,7 @@ public class NhaXuatBanDao {
         }
     }
 
-    public NhaXuatBan timNhaXuatBan(String nxb) {
+    public NhaXuatBan timNhaXuatBan(String nxb) throws Exception {
         try {
             return (NhaXuatBan) em.createNativeQuery("SELECT * FROM NhaXuatBan WHERE tenNXB = ?", NhaXuatBan.class)
                     .setParameter(1, nxb)
@@ -43,7 +43,7 @@ public class NhaXuatBanDao {
         }
     }
 
-    public boolean kiemTraTonTaiNXB(String ten) {
+    public boolean kiemTraTonTaiNXB(String ten) throws Exception {
         return em.createNativeQuery("SELECT * FROM NhaXuatBan WHERE tenNXB = ?", NhaXuatBan.class)
                 .setParameter(1, ten)
                 .getResultList().size() > 0;

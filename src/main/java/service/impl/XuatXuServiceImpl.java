@@ -30,19 +30,19 @@ public class XuatXuServiceImpl extends UnicastRemoteObject implements XuatXuServ
 	}
 
 	@Override
-	public boolean xoaXuatXu(String maXuatXu) {
+	public boolean xoaXuatXu(String maXuatXu) throws Exception {
 		// TODO Auto-generated method stub
-		return false;
+		return xuatXuDao.xoaXuatXu(maXuatXu);
 	}
 
 	@Override
-	public List<XuatXu> getXuatXu(String maXuatXu) {
+	public List<XuatXu> getXuatXu(String maXuatXu) throws Exception {
 		// TODO Auto-generated method stub
 		return xuatXuDao.getXuatXu(maXuatXu);
 	}
 
 	@Override
-	public XuatXu timXuatXu(String XuatXu) throws SQLException {
+	public XuatXu timXuatXu(String XuatXu) throws Exception {
 		// TODO Auto-generated method stub
 		return xuatXuDao.timXuatXu(XuatXu);
 	}

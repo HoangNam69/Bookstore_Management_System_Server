@@ -16,25 +16,25 @@ public SachLoiServiceImpl() throws Exception {
     }
 
     @Override
-    public boolean themSachLoi(SachLoi sl) {
+    public boolean themSachLoi(SachLoi sl)throws Exception {
         // TODO Auto-generated method stub
         return sachLoiDao.themSachLoi(sl);
     }
 
     @Override
-    public boolean capNhatSoLuong(SachLoi sl) {
+    public boolean capNhatSoLuong(SachLoi sl)throws Exception {
         // TODO Auto-generated method stub
         return sachLoiDao.capNhatSoLuong(sl);
     }
 
     @Override
-    public List<SachLoi> getAllSachLoi() throws SQLException {
+    public List<SachLoi> getAllSachLoi() throws Exception {
         // TODO Auto-generated method stub
         return sachLoiDao.getAllSachLoi();
     }
 
     @Override
-    public boolean xoaSachLoi(String maSach, String loi) {
+    public boolean xoaSachLoi(String maSach, String loi)throws Exception {
         return sachLoiDao.xoaSachLoi(maSach, loi);
     }
 

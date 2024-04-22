@@ -29,7 +29,7 @@ public class NhaXuatBanServiceImpl extends UnicastRemoteObject implements NhaXua
 	}
 
 	@Override
-	public NhaXuatBan timNhaXuatBan(String NXB) throws SQLException {
+	public NhaXuatBan timNhaXuatBan(String NXB) throws Exception {
 		// TODO Auto-generated method stub
 		return nhaXuatBanDao.timNhaXuatBan(NXB);
 	}

@@ -34,7 +34,7 @@ public class ThongKeDao {
     }
 
 
-    public List<NhanVien> getNhanVienBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<NhanVien> getNhanVienBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<NhanVien> query = em.createQuery(
                     "SELECT DISTINCT h.nhanVien " +
@@ -59,7 +59,7 @@ public class ThongKeDao {
     }
 
 
-    public List<SanPham> getSanPhamBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<SanPham> getSanPhamBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             String jpql = "SELECT s FROM SanPham s " +
                     "JOIN s.chiTietHoaDons c " +
@@ -87,7 +87,7 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongSachTon() {
+    public int getSoLuongSachTon() throws Exception {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(s.soLuongTon) FROM SanPham s WHERE s.loaiSanPham = 'Sách'",
@@ -101,7 +101,7 @@ public class ThongKeDao {
         }
     }
 
-    public int getSoLuongVPPTon() {
+    public int getSoLuongVPPTon() throws Exception {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(s.soLuongTon) FROM SanPham s WHERE s.loaiSanPham = 'Văn phòng phẩm'",
@@ -115,7 +115,7 @@ public class ThongKeDao {
         }
     }
 
-    public int getSoLuongSachLoi() {
+    public int getSoLuongSachLoi() throws Exception {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(s.soLuong) FROM SachLoi s",
@@ -130,7 +130,7 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongHoaDon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public int getSoLuongHoaDon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT COUNT(h) FROM HoaDon h " +
@@ -145,7 +145,7 @@ public class ThongKeDao {
         return 0;
     }
 
-    public double getDoanhThu(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public double getDoanhThu(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<Double> query = em.createQuery(
                     "SELECT SUM(c.soLuong * c.donGia) FROM ChiTietHoaDon c " +
@@ -163,7 +163,7 @@ public class ThongKeDao {
     }
 
 
-    public List<KhachHang> getKhachHangMuaNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<KhachHang> getKhachHangMuaNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         List<KhachHang> dsKH = new ArrayList<>();
         try {
             TypedQuery<KhachHang> query = em.createQuery(
@@ -189,7 +189,7 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongBanCuaSanPhamChayNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public int getSoLuongBanCuaSanPhamChayNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<Integer> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong) " +
@@ -213,7 +213,7 @@ public class ThongKeDao {
         }
     }
 
-    public double getTongTienCuaKhachHangTop1(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public double getTongTienCuaKhachHangTop1(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<Double> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong * cthd.donGia) " +
@@ -238,7 +238,7 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongHoaDonCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) {
+    public int getSoLuongHoaDonCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) throws Exception {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT COUNT(hd) " +
@@ -259,7 +259,7 @@ public class ThongKeDao {
         }
     }
 
-    public double getTongTienCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) {
+    public double getTongTienCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) throws Exception {
         try {
             TypedQuery<Double> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong * cthd.donGia) " +
@@ -283,7 +283,7 @@ public class ThongKeDao {
     }
 
 
-    public double getDoanhThuTheoMaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) {
+    public double getDoanhThuTheoMaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) throws Exception {
         try {
             TypedQuery<Double> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong * cthd.donGia) " +
@@ -305,7 +305,7 @@ public class ThongKeDao {
         }
     }
 
-    public int getSoLuongHoaDonTheoMaNV(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) {
+    public int getSoLuongHoaDonTheoMaNV(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) throws Exception {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT COUNT(hd) " +
@@ -327,7 +327,7 @@ public class ThongKeDao {
     }
 
 
-    public List<NhanVien> getDoanhThuCuaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<NhanVien> getDoanhThuCuaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<NhanVien> query = em.createQuery(
                     "SELECT DISTINCT hd.nhanVien " +
@@ -345,7 +345,7 @@ public class ThongKeDao {
         }
     }
 
-    public List<NhanVien> thongKeDoanhThu10NVBanNhieuNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<NhanVien> thongKeDoanhThu10NVBanNhieuNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<NhanVien> query = em.createQuery(
                     "SELECT hd.nhanVien, SUM(cthd.donGia * cthd.soLuong) AS TongDoanhThu " +
@@ -368,7 +368,7 @@ public class ThongKeDao {
     }
 
 
-    public List<KhachHang> getTop10KHThanThiet(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
+    public List<KhachHang> getTop10KHThanThiet(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
         try {
             TypedQuery<Object[]> query = em.createQuery(
                     "SELECT hd.khachHang.maKhachHang, SUM(cthd.donGia * cthd.soLuong) AS TongDoanhThu " +

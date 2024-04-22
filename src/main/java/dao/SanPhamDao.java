@@ -20,7 +20,7 @@ public class SanPhamDao {
     }
 
 
-    public SanPham timSanPhamTheoMa(String maSP) {
+    public SanPham timSanPhamTheoMa(String maSP) throws Exception {
         try {
             SanPham sanPham = em.find(SanPham.class, maSP);
             if (sanPham != null) {
@@ -37,7 +37,7 @@ public class SanPhamDao {
         }
     }
 
-    public Sach getSachTheoMaSP(String maSP) {
+    public Sach getSachTheoMaSP(String maSP) throws Exception {
         try {
             return em.find(Sach.class, maSP);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class SanPhamDao {
 
     }
 
-    public SanPham getSanPhamTheoMa(String masp) {
+    public SanPham getSanPhamTheoMa(String masp) throws Exception {
         try {
             return em.find(SanPham.class, masp);
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class SanPhamDao {
         }
     }
 
-    public VanPhongPham getVPPTheoMaSP(String maSP) {
+    public VanPhongPham getVPPTheoMaSP(String maSP) throws Exception {
         try {
             return em.find(VanPhongPham.class, maSP);
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class SanPhamDao {
     }
 
     public List<Sach> getListSachTheoYeuCau(String maSach, String tenSP, String maTheLoai, Long giaTu, Long giaDen,
-                                            String maTacGia, String maNXB, String maNCC, boolean hetHang) {
+                                            String maTacGia, String maNXB, String maNCC, boolean hetHang) throws Exception {
         try {
             String query = "SELECT s FROM Sach s WHERE s.maSanPham LIKE :maSach AND s.tenSach LIKE :tenSP AND s.theLoaiSach.maLoai LIKE :maTheLoai " +
                     "AND s.giaNhap >= :giaTu AND s.giaNhap <= :giaDen AND s.tacGia.maTacGia LIKE :maTacGia " +
@@ -91,7 +91,7 @@ public class SanPhamDao {
     }
 
     public List<VanPhongPham> getListVanPhongPhamTheoYeuCau(String maVPP, String tenVPP, String theLoaiVPP, Long giaTu,
-                                                            Long giaDen, String maChatLieu, String maXuatXu, String maNCC, boolean hetHang) {
+                                                            Long giaDen, String maChatLieu, String maXuatXu, String maNCC, boolean hetHang) throws Exception {
         String query = "SELECT v FROM VanPhongPham v WHERE v.maSanPham LIKE :maVPP AND v.tenVanPhongPham LIKE :tenVPP AND v.loaiVanPhongPham.maLoai LIKE :theLoaiVPP " +
                 "AND v.giaNhap > :giaTu AND v.giaNhap < :giaDen AND v.chatLieu.maChatLieu LIKE :maChatLieu " +
                 "AND v.xuatXu.maXuatXu LIKE :maXuatXu AND v.nhaCungCap.maNCC LIKE :maNCC";
@@ -116,7 +116,7 @@ public class SanPhamDao {
     }
 
 
-    public boolean themSanPham(SanPham sanPham) {
+    public boolean themSanPham(SanPham sanPham) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -131,7 +131,7 @@ public class SanPhamDao {
     }
 
 
-    public boolean capNhatSanPham(String maSP, SanPham temp) {
+    public boolean capNhatSanPham(String maSP, SanPham temp) throws Exception {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -166,7 +166,7 @@ public class SanPhamDao {
         }
     }
 
-    public String getMaSPMax() {
+    public String getMaSPMax() throws Exception {
         String query = "SELECT MAX(s.maSanPham) FROM SanPham s";
         try {
             return em.createQuery(query, String.class).getSingleResult();
@@ -188,7 +188,7 @@ public class SanPhamDao {
         return null;
     }
 
-    public VanPhongPham timSanPhamTheoMaVPP(String maVPP) {
+    public VanPhongPham timSanPhamTheoMaVPP(String maVPP) throws Exception {
         String query = "SELECT v FROM VanPhongPham v WHERE v.maSanPham = :maVPP";
         try {
             return em.createQuery(query, VanPhongPham.class)
@@ -201,7 +201,7 @@ public class SanPhamDao {
     }
 
 
-    public List<Sach> getAllSach() {
+    public List<Sach> getAllSach() throws Exception {
         try {
             return em.createQuery("SELECT s FROM Sach s", Sach.class).getResultList();
         } catch (Exception e) {
@@ -210,7 +210,7 @@ public class SanPhamDao {
         }
     }
 
-    public List<VanPhongPham> getAllVPP() {
+    public List<VanPhongPham> getAllVPP() throws Exception {
         try {
 
             return em.createQuery("SELECT v FROM VanPhongPham v", VanPhongPham.class).getResultList();
@@ -220,7 +220,7 @@ public class SanPhamDao {
         }
     }
 
-    public Sach getSachTheoTen(String ten) {
+    public Sach getSachTheoTen(String ten) throws Exception {
 
         try {
             return em.createQuery("SELECT s FROM Sach s WHERE s.tenSach = :ten", Sach.class)
@@ -233,7 +233,7 @@ public class SanPhamDao {
     }
 
 
-    public VanPhongPham getVPPTheoTen(String ten) {
+    public VanPhongPham getVPPTheoTen(String ten) throws Exception {
         try {
             return em.createQuery("SELECT v FROM VanPhongPham v WHERE v.tenVanPhongPham = :ten", VanPhongPham.class)
                     .setParameter("ten", ten)
@@ -244,7 +244,7 @@ public class SanPhamDao {
         }
     }
 
-    public int capNhatSoLuongSanPham(SanPham sanPham) {
+    public int capNhatSoLuongSanPham(SanPham sanPham) throws Exception {
         EntityTransaction tx = em.getTransaction();
         String query = "UPDATE SanPham s SET s.soLuongTon = :soLuongTon WHERE s.maSanPham = :maSP";
         try {
@@ -266,7 +266,7 @@ public class SanPhamDao {
         }
     }
 
-    public boolean kiemTraTonTaiSanPham(String tenSP) {
+    public boolean kiemTraTonTaiSanPham(String tenSP) throws Exception {
         String querySach = "SELECT s FROM Sach s WHERE s.tenSach = :tenSP";
         String queryVPP = "SELECT v FROM VanPhongPham v WHERE v.tenVanPhongPham = :tenSP";
 
@@ -284,7 +284,7 @@ public class SanPhamDao {
         }
     }
 
-    public SanPham timSanPhamTheoMa1(String maSP) {
+    public SanPham timSanPhamTheoMa1(String maSP) throws Exception {
         try {
             return em.find(SanPham.class, maSP);
         } catch (Exception e) {
