@@ -22,7 +22,7 @@ public class KhachHang implements Serializable {
     private boolean gioiTinh;
     private String diaChi;
 
-    @OneToMany(mappedBy = "khachHang", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<HoaDon> hoaDons;
 
 

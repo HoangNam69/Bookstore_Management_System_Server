@@ -17,7 +17,7 @@ public class NhaXuatBan implements Serializable {
     private String tenNXB;
 
     //    Moi quan he giua nha xuat ban voi san pham
-    @OneToMany(mappedBy = "nhaXuatBan", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nhaXuatBan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sach> sachs;
 
     public NhaXuatBan(String maNXB) {

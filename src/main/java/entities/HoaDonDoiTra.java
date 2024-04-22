@@ -28,7 +28,7 @@ public class HoaDonDoiTra implements Serializable {
 	@JoinColumn(name = "maKhachHang")
 	private KhachHang khachHang;
 //	moi quan he giua hoa don doi tra - chi tiet hoa don doi tra
-	@OneToMany(mappedBy = "hoaDonDoiTra", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hoaDonDoiTra", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ChiTietHoaDonDoiTra> chiTietHoaDonDoiTras;
 
 //	moi quan he giua hoa don doi tra - hoa don

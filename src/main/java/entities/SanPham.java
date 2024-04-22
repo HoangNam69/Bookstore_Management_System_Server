@@ -29,10 +29,10 @@ public abstract class SanPham implements Serializable {
     @JoinColumn(name = "maNCC")
     protected NhaCungCap nhaCungCap;
     //    Moi quan he voi chi tiet hoa don
-    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ChiTietHoaDon> chiTietHoaDons;
     //    Moi quan he voi chi tiet hoa don doi tra
-    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ChiTietHoaDonDoiTra> chiTietHoaDonDoiTras;
 
 

@@ -17,7 +17,7 @@ public class ChatLieu  implements Serializable {
 	private String tenChatLieu;
 
 //	Moi quan he giua chat lieu voi san pham
-	@OneToMany(mappedBy = "chatLieu", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "chatLieu", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<VanPhongPham> vanPhongPhams;
 
 

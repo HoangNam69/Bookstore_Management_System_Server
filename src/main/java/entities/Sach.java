@@ -26,7 +26,7 @@ public class Sach extends SanPham implements Serializable {
     private TheLoaiSach theLoaiSach;
 
     //    Moi quan he giua san pham voi sach loi
-    @OneToMany(mappedBy = "sach", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sach", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<SachLoi> sachLois;
 
     //    Moi quan he giua san pham voi nha xuat ban

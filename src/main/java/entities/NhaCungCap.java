@@ -21,7 +21,7 @@ public class NhaCungCap implements Serializable {
     @Column(name = "sdt", unique = true, nullable = false)
     private String sDT;
 
-    @OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     private Set<SanPham> sanPhams;
 
     public String getMaNCC() {
