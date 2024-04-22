@@ -15,26 +15,26 @@ public NhaCungCapServiceImpl() throws Exception {
 	}
 
 	@Override
-	public ArrayList<NhaCungCap> getListNhaCungCap(String loaiSanPham) {
+	public ArrayList<NhaCungCap> getListNhaCungCap(String loaiSanPham)throws Exception {
 		// TODO Auto-generated method stub
 		return nhaCungCapDao.getListNhaCungCapTheoLoaiSanPham(loaiSanPham);
 	}
 
 	@Override
-	public boolean themNhaCungCap(NhaCungCap t) {
+	public boolean themNhaCungCap(NhaCungCap t)throws Exception {
 		if(nhaCungCapDao.kiemTraTonTaiNCC(t.getTenNCC()))
 			return false;
 		return nhaCungCapDao.themNhaCungCap(t);
 	}
 
 	@Override
-	public ArrayList<NhaCungCap> getAllListNhaCungCap()  {
+	public ArrayList<NhaCungCap> getAllListNhaCungCap()throws Exception  {
 		// TODO Auto-generated method stub
 		return nhaCungCapDao.getAllListNhaCungCap();
 	}
 
 	@Override
-	public NhaCungCap timNhaCungCap(String NCC) {
+	public NhaCungCap timNhaCungCap(String NCC)throws Exception {
 		// TODO Auto-generated method stub
 		return nhaCungCapDao.timNhaCungCapTheoTen(NCC);
 	}

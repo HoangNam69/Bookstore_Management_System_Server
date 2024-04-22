@@ -28,17 +28,17 @@ public class MauSacServiceImpl extends UnicastRemoteObject implements MauSacServ
     }
 
     @Override
-    public MauSac timMauSac(String mau) throws SQLException {
+    public MauSac timMauSac(String mau) throws Exception {
         return mauSacDao.timMauSac(mau);
     }
 
     @Override
-    public boolean capNhatMauSac(MauSac mauSac) throws SQLException {
+    public boolean capNhatMauSac(MauSac mauSac) throws Exception {
         return mauSacDao.capNhatMauSac(mauSac);
     }
 
     @Override
-    public boolean xoaMauSac(String maMauSac) throws SQLException {
+    public boolean xoaMauSac(String maMauSac) throws Exception {
         return mauSacDao.xoaMauSac(maMauSac);
     }
 
