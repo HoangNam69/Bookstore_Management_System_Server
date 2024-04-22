@@ -93,32 +93,32 @@ public class KhachHangServiceImpl extends UnicastRemoteObject implements KhachHa
 
 	@Override
 	public double getTongTienCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH)
-			throws SQLException {
+            throws Exception {
 		// TODO Auto-generated method stub
 		return thongKeDao.getTongTienCuaKhachHangTheoMa(ngayBatDau, ngayKetThuc, maKH);
 	}
 
 	@Override
-	public ArrayList<KhachHang> timKhachHangTheoSDT(String sDT) throws SQLException {
+	public ArrayList<KhachHang> timKhachHangTheoSDT(String sDT) throws Exception {
 		// TODO Auto-generated method stub
 
 		return khachhang_dao.timKhachHangTheoSDT(sDT);
 	}
 
 	@Override
-	public ArrayList<KhachHang> timKhachHangTheoTen(String tenKH) throws SQLException {
+	public ArrayList<KhachHang> timKhachHangTheoTen(String tenKH) throws Exception {
 		// TODO Auto-generated method stub
 		return khachhang_dao.timKhachHangTheoTen(tenKH);
 	}
 
 	@Override
-	public ArrayList<KhachHang> getListKhachHangByNameAndSDT(String tenNhanVien, String sDT) {
+	public ArrayList<KhachHang> getListKhachHangByNameAndSDT(String tenNhanVien, String sDT) throws Exception {
 		// TODO Auto-generated method stub
 		return khachhang_dao.getListKhachHangByNameAndSDT(tenNhanVien, sDT);
 	}
 
 	@Override
-	public KhachHang timKhachHangBangSDT(String sdt) throws SQLException {
+	public KhachHang timKhachHangBangSDT(String sdt) throws Exception {
 		// TODO Auto-generated method stub
 		return khachhang_dao.timKhachHangBangSDT(sdt);
 	}
