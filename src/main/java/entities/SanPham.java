@@ -25,7 +25,7 @@ public abstract class SanPham implements Serializable {
     protected String hinhAnh;
 
     //    Moi quan he voi nha cung cap
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maNCC")
     protected NhaCungCap nhaCungCap;
     //    Moi quan he voi chi tiet hoa don

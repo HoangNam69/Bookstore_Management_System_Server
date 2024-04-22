@@ -21,11 +21,11 @@ public class HoaDon implements Serializable {
     private double tienKhachDua;
     private boolean tinhTrang;
 //    moi quan he giua hoa don - nhan vien
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maNhanVien")
     private NhanVien nhanVien;
 //    moi quan he giua hoa don - khach hang
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "maKhachHang")
     private KhachHang khachHang;
 

@@ -45,8 +45,7 @@ public class SachLoiDao {
     }
 
     public List<SachLoi> getAllSachLoi() throws Exception {
-        return em.createNativeQuery("SELECT * FROM SachLoi", SachLoi.class)
-                .getResultList();
+        return em.createQuery("SELECT sl FROM SachLoi sl", SachLoi.class).getResultList();
     }
 
     public boolean xoaSachLoi(String maSach, String loi) throws Exception {

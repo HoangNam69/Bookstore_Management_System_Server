@@ -14,12 +14,12 @@ public class ChiTietHoaDon implements Serializable {
 	private long donGia;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maHoaDon")
 	private HoaDon hoaDon;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maSanPham")
 	private SanPham sanPham;
 

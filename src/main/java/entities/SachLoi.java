@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class SachLoi implements Serializable {
 
 	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "maSach", unique = true, nullable = false)
 	private Sach sach;
 
