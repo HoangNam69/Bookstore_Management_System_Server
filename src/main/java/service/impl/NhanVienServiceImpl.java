@@ -160,4 +160,12 @@ public class NhanVienServiceImpl extends UnicastRemoteObject implements NhanVien
         // TODO Auto-generated method stub
         return thongKeDao.thongKeDoanhThu10NVBanNhieuNhat(ngayBatDau, ngayKetThuc);
     }
+
+    public static int getErrorsThem() {
+        return errorsThem;
+    }
+
+    public static int getErrorsSua() {
+        return errorsSua;
+    }
 }

@@ -117,7 +117,7 @@ public class NhanVienDao {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            NhanVien nv1 = em.find(NhanVien.class, nv.getMaNhanVien());
+            NhanVien nv1 = em.find(NhanVien.class, nv);
             em.merge(nv1);
             tx.commit();
             return true;
