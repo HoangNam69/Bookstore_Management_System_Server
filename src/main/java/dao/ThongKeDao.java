@@ -1,20 +1,16 @@
 package dao;
 
-import entities.KhachHang;
-import entities.NhanVien;
-import entities.SanPham;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import entities.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import util.DatabaseConnection;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ThongKeDao {
@@ -35,7 +31,7 @@ public class ThongKeDao {
     }
 
 
-    public List<NhanVien> getNhanVienBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public List<NhanVien> getNhanVienBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
             TypedQuery<NhanVien> query = em.createQuery(
                     "SELECT DISTINCT h.nhanVien " +
@@ -49,8 +45,8 @@ public class ThongKeDao {
                             "    GROUP BY h2.nhanVien)",
                     NhanVien.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
 
             return query.getResultList();
         } catch (Exception e) {
@@ -60,7 +56,7 @@ public class ThongKeDao {
     }
 
 
-    public List<SanPham> getSanPhamBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public List<SanPham> getSanPhamBanNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
             String jpql = "SELECT s FROM SanPham s " +
                     "JOIN s.chiTietHoaDons c " +
@@ -86,9 +82,7 @@ public class ThongKeDao {
         }
         return null;
     }
-
-
-    public int getSoLuongSachTon() throws Exception {
+    public int getSoLuongSachTon() {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(s.soLuongTon) FROM SanPham s WHERE s.loaiSanPham = 'Sách'",
@@ -102,7 +96,7 @@ public class ThongKeDao {
         }
     }
 
-    public int getSoLuongVPPTon() throws Exception {
+    public int getSoLuongVPPTon() {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(s.soLuongTon) FROM SanPham s WHERE s.loaiSanPham = 'Văn phòng phẩm'",
@@ -116,7 +110,7 @@ public class ThongKeDao {
         }
     }
 
-    public int getSoLuongSachLoi() throws Exception {
+    public int getSoLuongSachLoi() {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(s.soLuong) FROM SachLoi s",
@@ -131,13 +125,13 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongHoaDon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public int getSoLuongHoaDon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT COUNT(h) FROM HoaDon h " +
                             "WHERE h.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc", Long.class);
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
 
             return Math.toIntExact(query.getSingleResult());
         } catch (Exception e) {
@@ -146,17 +140,17 @@ public class ThongKeDao {
         return 0;
     }
 
-    public double getDoanhThu(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public double getDoanhThu(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
-            TypedQuery<Double> query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(c.soLuong * c.donGia) FROM ChiTietHoaDon c " +
                             "INNER JOIN c.hoaDon h " +
-                            "WHERE h.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc", Double.class);
+                            "WHERE h.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc", Long.class);
             query.setParameter("ngayBatDau", ngayBatDau);
             query.setParameter("ngayKetThuc", ngayKetThuc);
 
-            Double result = query.getSingleResult();
-            return result != null ? result : 0.0;
+            Long result = query.getSingleResult();
+            return result != null ? result.doubleValue() : 0.0;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,7 +158,7 @@ public class ThongKeDao {
     }
 
 
-    public List<KhachHang> getKhachHangMuaNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public List<KhachHang> getKhachHangMuaNhieuNhatTheoNgayTuChon(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         List<KhachHang> dsKH = new ArrayList<>();
         try {
             TypedQuery<KhachHang> query = em.createQuery(
@@ -179,8 +173,8 @@ public class ThongKeDao {
                             "    GROUP BY k2)",
                     KhachHang.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
 
             dsKH = query.getResultList();
         } catch (Exception e) {
@@ -190,9 +184,9 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongBanCuaSanPhamChayNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public int getSoLuongBanCuaSanPhamChayNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
-            TypedQuery<Integer> query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong) " +
                             "FROM ChiTietHoaDon cthd " +
                             "JOIN cthd.sanPham sp " +
@@ -200,23 +194,23 @@ public class ThongKeDao {
                             "WHERE hd.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc " +
                             "GROUP BY sp " +
                             "ORDER BY SUM(cthd.soLuong) DESC",
-                    Integer.class
+                    Long.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setMaxResults(1); // Limit to 1 result
 
-            Integer soLuongBan = query.getSingleResult();
-            return soLuongBan != null ? soLuongBan : 0;
+            Long soLuongBan = query.getSingleResult();
+            return soLuongBan != null ? soLuongBan.intValue() : 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public double getTongTienCuaKhachHangTop1(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public double getTongTienCuaKhachHangTop1(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
-            TypedQuery<Double> query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong * cthd.donGia) " +
                             "FROM ChiTietHoaDon cthd " +
                             "JOIN cthd.hoaDon hd " +
@@ -224,14 +218,14 @@ public class ThongKeDao {
                             "WHERE hd.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc " +
                             "GROUP BY kh " +
                             "ORDER BY SUM(cthd.soLuong * cthd.donGia) DESC",
-                    Double.class
+                    Long.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setMaxResults(1); // Limit to 1 result
 
-            Double tongTien = query.getSingleResult();
-            return tongTien != null ? tongTien : 0;
+            Long tongTien = query.getSingleResult();
+            return tongTien != null ? tongTien.doubleValue() : 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -239,7 +233,7 @@ public class ThongKeDao {
     }
 
 
-    public int getSoLuongHoaDonCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) throws Exception {
+    public int getSoLuongHoaDonCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT COUNT(hd) " +
@@ -248,8 +242,8 @@ public class ThongKeDao {
                             "AND hd.khachHang.maKhachHang = :maKH",
                     Long.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setParameter("maKH", maKH);
 
             Long soLuong = query.getSingleResult();
@@ -260,23 +254,23 @@ public class ThongKeDao {
         }
     }
 
-    public double getTongTienCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) throws Exception {
+    public double getTongTienCuaKhachHangTheoMa(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maKH) {
         try {
-            TypedQuery<Double> query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong * cthd.donGia) " +
                             "FROM ChiTietHoaDon cthd " +
                             "JOIN cthd.hoaDon hd " +
                             "JOIN hd.khachHang kh " +
                             "WHERE hd.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc " +
                             "AND kh.maKhachHang = :maKH",
-                    Double.class
+                    Long.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setParameter("maKH", maKH);
 
-            Double tongTien = query.getSingleResult();
-            return tongTien != null ? tongTien : 0;
+            Long tongTien = query.getSingleResult();
+            return tongTien != null ? tongTien.doubleValue() : 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -284,29 +278,29 @@ public class ThongKeDao {
     }
 
 
-    public double getDoanhThuTheoMaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) throws Exception {
+    public double getDoanhThuTheoMaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) {
         try {
-            TypedQuery<Double> query = em.createQuery(
+            TypedQuery<Long> query = em.createQuery(
                     "SELECT SUM(cthd.soLuong * cthd.donGia) " +
                             "FROM ChiTietHoaDon cthd " +
                             "JOIN cthd.hoaDon hd " +
                             "WHERE hd.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc " +
                             "AND hd.nhanVien.maNhanVien = :maNV",
-                    Double.class
+                    Long.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setParameter("maNV", maNV);
 
-            Double tongTien = query.getSingleResult();
-            return tongTien != null ? tongTien : 0;
+            Long tongTien = query.getSingleResult();
+            return tongTien != null ? tongTien.doubleValue() : 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public int getSoLuongHoaDonTheoMaNV(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) throws Exception {
+    public int getSoLuongHoaDonTheoMaNV(LocalDate ngayBatDau, LocalDate ngayKetThuc, String maNV) {
         try {
             TypedQuery<Long> query = em.createQuery(
                     "SELECT COUNT(hd) " +
@@ -315,8 +309,8 @@ public class ThongKeDao {
                             "AND hd.nhanVien.maNhanVien = :maNV",
                     Long.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setParameter("maNV", maNV);
 
             Long soLuong = query.getSingleResult();
@@ -328,7 +322,7 @@ public class ThongKeDao {
     }
 
 
-    public List<NhanVien> getDoanhThuCuaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public List<NhanVien> getDoanhThuCuaNhanVien(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
             TypedQuery<NhanVien> query = em.createQuery(
                     "SELECT DISTINCT hd.nhanVien " +
@@ -336,8 +330,8 @@ public class ThongKeDao {
                             "WHERE hd.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc",
                     NhanVien.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
 
             return query.getResultList();
         } catch (Exception e) {
@@ -346,19 +340,19 @@ public class ThongKeDao {
         }
     }
 
-    public List<NhanVien> thongKeDoanhThu10NVBanNhieuNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public List<NhanVien> thongKeDoanhThu10NVBanNhieuNhat(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
             TypedQuery<NhanVien> query = em.createQuery(
-                    "SELECT hd.nhanVien, SUM(cthd.donGia * cthd.soLuong) AS TongDoanhThu " +
+                    "SELECT hd.nhanVien " +
                             "FROM HoaDon hd " +
                             "JOIN hd.chiTietHoaDons cthd " +
                             "WHERE hd.ngayLapHoaDon BETWEEN :ngayBatDau AND :ngayKetThuc " +
                             "GROUP BY hd.nhanVien " +
-                            "ORDER BY TongDoanhThu DESC",
+                            "ORDER BY SUM(cthd.donGia * cthd.soLuong) DESC",
                     NhanVien.class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setMaxResults(10);
 
             return query.getResultList();
@@ -369,7 +363,7 @@ public class ThongKeDao {
     }
 
 
-    public List<KhachHang> getTop10KHThanThiet(LocalDate ngayBatDau, LocalDate ngayKetThuc) throws Exception {
+    public List<KhachHang> getTop10KHThanThiet(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
         try {
             TypedQuery<Object[]> query = em.createQuery(
                     "SELECT hd.khachHang.maKhachHang, SUM(cthd.donGia * cthd.soLuong) AS TongDoanhThu " +
@@ -380,8 +374,8 @@ public class ThongKeDao {
                             "ORDER BY TongDoanhThu DESC",
                     Object[].class
             );
-            query.setParameter("ngayBatDau", ngayBatDau.atStartOfDay());
-            query.setParameter("ngayKetThuc", ngayKetThuc.atStartOfDay());
+            query.setParameter("ngayBatDau", ngayBatDau);
+            query.setParameter("ngayKetThuc", ngayKetThuc);
             query.setMaxResults(10);
 
             List<Object[]> results = query.getResultList();
