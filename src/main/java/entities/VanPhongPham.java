@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @NoArgsConstructor
-@DiscriminatorValue("VanPhongPham")
 @Entity
+@DiscriminatorValue("VanPhongPham")
 public class VanPhongPham extends SanPham implements Serializable {
     private String tenVanPhongPham;
 
