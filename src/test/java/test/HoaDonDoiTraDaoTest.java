@@ -36,11 +36,16 @@ public class HoaDonDoiTraDaoTest {
     private KhachHangDao khachHangDao = new KhachHangDao();
     private NhanVienDao nhanVienDao = new NhanVienDao();
     private HoaDonDao hoaDonDao = new HoaDonDao();
+
+    public HoaDonDoiTraDaoTest() throws Exception {
+    }
+
     @BeforeAll
     public void setUp() throws Exception{
         hoaDonDoiTraDao = new HoaDonDoiTraDao();
         nhanVienDao = new NhanVienDao();
         hoaDonDao = new HoaDonDao();
+
     }
 
     @Test
