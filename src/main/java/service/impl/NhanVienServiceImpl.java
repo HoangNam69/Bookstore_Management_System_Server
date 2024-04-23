@@ -74,32 +74,7 @@ public class NhanVienServiceImpl extends UnicastRemoteObject implements NhanVien
 
     @Override
     public boolean suaNhanVien(NhanVien nv) throws Exception {
-        // TODO Auto-generated method stub
-        if (!(nv.getHoTenNhanVien().length() > 0 && nv.getHoTenNhanVien()
-                .matches("[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊ"
-                        + "ỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]*"))) {
-            errorsSua = 1;
-            return false;
-        } else if (!(nv.getsDT().length() > 0 && nv.getsDT().matches("^[0-9]{10}$"))) {
-            errorsSua = 2;
-            return false;
-
-        } else if (!(nv.getcCCD().length() > 0 && nv.getcCCD().matches("^[0-9]{12}$"))) {
-            errorsSua = 3;
-            return false;
-        } else if (!(nv.getEmail().length() > 0 && nv.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$"))) {
-            errorsSua = 4;
-            return false;
-        } else if (!(nv.getDiaChi().length() > 0 && nv.getDiaChi()
-                .matches("[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊ"
-                        + "ỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ,\\w\\s]*"))) {
-            errorsSua = 5;
-            return false;
-        } else {
-            nhanVienDao.suaNhanVien(nv);
-            return true;
-        }
-
+        return nhanVienDao.suaNhanVien(nv);
     }
 
     @Override
