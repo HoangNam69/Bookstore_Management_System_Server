@@ -34,7 +34,8 @@ public class SachLoiDao {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.merge(sl);
+            SachLoi sachLoi = em.find(SachLoi.class, sl);
+            em.merge(sachLoi);
             tx.commit();
             return true;
         } catch (Exception e) {
