@@ -161,11 +161,11 @@ public class NhanVienServiceImpl extends UnicastRemoteObject implements NhanVien
         return thongKeDao.thongKeDoanhThu10NVBanNhieuNhat(ngayBatDau, ngayKetThuc);
     }
 
-    public static int getErrorsThem() {
+    public int getErrorsThem() throws Exception{
         return errorsThem;
     }
 
-    public static int getErrorsSua() {
+    public  int getErrorsSua() throws Exception{
         return errorsSua;
     }
 }
