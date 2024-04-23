@@ -117,15 +117,14 @@ public class NhanVienDao {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            NhanVien nv1 = em.find(NhanVien.class, nv);
-            em.merge(nv1);
+            em.merge(nv);
             tx.commit();
             return true;
         } catch (Exception e) {
             tx.rollback();
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     public NhanVien getNhanVienByEmail(String email) throws Exception {
